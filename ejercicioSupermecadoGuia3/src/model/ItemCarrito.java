@@ -7,16 +7,16 @@ public class ItemCarrito {
 	
 	public ItemCarrito(int idItem, Producto productos, int cantidad) {
 		super();
-		this.idItem = idItem;
-		this.productos = productos;
-		this.cantidad = cantidad;
+		this.setIdItem(idItem);
+		this.setProductos(productos);
+		this.setCantidad(cantidad);
 	}
 	
 	
 	
 	@Override
 	public String toString() {
-		return "ItemCarrito [idItem=" + idItem + ", productos=" + productos + ", cantidad=" + cantidad + "]\n";
+		return "\nItemCarrito [idItem=" + idItem + ", productos=" + productos + ", cantidad=" + cantidad + "]";
 	}
 
 

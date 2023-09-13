@@ -9,16 +9,16 @@ public class Producto {
 	
 	public Producto(String producto, float precio) {
 		super();
-		this.producto = producto;
-		this.precio = precio;
+		this.setProducto(producto);
+		this.setPrecio(precio);
 	}
 	
 	
 	public Producto(int idProducto, String producto, float precio) {
 		super();
-		this.idProducto = idProducto;
-		this.producto = producto;
-		this.precio = precio;
+		this.setIdProducto(idProducto);
+		this.setProducto(producto);
+		this.setPrecio(precio);
 	}
 	
 	

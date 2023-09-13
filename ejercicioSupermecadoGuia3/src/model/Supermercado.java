@@ -24,30 +24,71 @@ public class Supermercado {
 		this.cli = cli;
 		this.carr = carr;
 	}
-	//************** Funciones de la lista cliente **************************
+	//************** Funciones de la lista carrito **************************
 	
-	public boolean agregarCarrito(LocalDate fecha,LocalTime hora) {
+	public boolean agregarCarrito(LocalDate fecha,LocalTime hora,Cliente cliente) throws Exception {
 		
+		if (traerCarrito(cliente)!=null) {
+			throw new Exception("Error: El carrito ya existe");
+		}
 		
-		
-		
-		return false;
+		int id=1;
+		if(carr.size()>0) {
+			int tam=carr.size();
+			id=carr.get(tam-1).getIdCarrito()+1;
+		}	
+		return carr.add(new Carrito(id, fecha, hora,cliente));	
 	}
 	
 	
 	public Carrito traerCarrito(Cliente cliente) {
 		
-		return null;
+		boolean carrEncontrado = false;
+		Carrito carrBuscado = null;
+		int i=0;
+		while (i<carr.size() && !carrEncontrado) {
+					
+			if(carr.get(i).getCli().equals(cliente)) {
+				carrEncontrado=true;
+				carrBuscado=carr.get(i);
+				}
+		i++;
+		}
+		return carrBuscado;
 	}
 	
+	public Carrito traerCarrito(int idCarrito) {
+		
+		boolean carrEncontrado = false;
+		Carrito carrBuscado = null;
+		int i=0;
+		while (i<carr.size() && !carrEncontrado) {
+					
+			if(carr.get(i).getIdCarrito()==idCarrito) {
+				carrEncontrado=true;
+				carrBuscado=carr.get(i);
+				}
+		i++;
+		}
+		return carrBuscado;
+	}
+	
+	
+	public boolean eliminarCarrito (int idCarrito) throws Exception {
+		Carrito carrito=traerCarrito(idCarrito);
+		if(carrito==null) {
+			throw new Exception("Error: el carrito no exite");
+		}
+		
+		carr.remove(idCarrito-1);
+		
+		return true;
+	}
 	
 
 	//************** Funciones de la lista cliente **************************
 	public boolean agregarCliente(String nombreCliente, int dni, String direccion)throws Exception {
 			
-			if (dni==0) {
-				throw new Exception("Error: No se puede agregar un cliente vacio");
-			}
 			if (traerCliente(dni)!=null) {
 				throw new Exception("Error: El cliente ya existe");
 			}
@@ -77,6 +118,32 @@ public class Supermercado {
 		}
 
 		return cliBuscado;
+	}
+	
+	public Cliente traerClienteXid(int id) {
+		boolean cliEncontrado = false;
+		Cliente cliBuscado = null;
+		int i=0;
+		while (i<cli.size() && !cliEncontrado) {
+					
+			if(cli.get(i).getIdCliente()==id) {
+				cliEncontrado=true;
+				cliBuscado=cli.get(i);
+				}
+		i++;
+		}
+
+		return cliBuscado;
+	}
+	
+	public boolean eliminarCliente(int idCliente) throws Exception {
+		Cliente cliBuscado = traerClienteXid(idCliente);
+		
+		if(cliBuscado==null) {
+			throw new Exception("Error: el cliente no existe");
+		}
+		cli.remove(idCliente-1);
+		return true;
 	}
 	
 	
@@ -137,13 +204,10 @@ public class Supermercado {
 	}
 	
 	public boolean eliminarProducto(int idProducto) throws Exception{
-		if(traerProducto(idProducto)==null) {
+		Producto p= traerProducto(idProducto);
+		if(p==null) {
 			throw new Exception("Error: El producto no existe"); 
 		}
-		
-		Producto p= this.traerProducto(idProducto);
-		
-		
 		return productos.remove(p);
 	}
 	

@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Carrito {
 	private int idCarrito;
 	private LocalDate fecha;
@@ -16,9 +17,9 @@ public class Carrito {
 	
 	public Carrito(int idCarrito, LocalDate fecha, LocalTime hora) {
 		super();
-		this.idCarrito = idCarrito;
-		this.fecha = fecha;
-		this.hora = hora;
+		this.setIdCarrito(idCarrito);
+		this.setFecha(fecha);
+		this.setHora(hora);
 		this.items = new ArrayList<ItemCarrito>();
 	}
 
@@ -26,11 +27,11 @@ public class Carrito {
 
 	public Carrito(int idCarrito, LocalDate fecha, LocalTime hora,Cliente cliente) {
 		super();
-		this.idCarrito = idCarrito;
-		this.fecha = fecha;
-		this.hora = hora;
+		this.setIdCarrito(idCarrito);
+		this.setFecha(fecha);
+		this.setHora(hora);
 		this.items = new ArrayList<ItemCarrito>();
-		this.cli=cliente;
+		this.setCli(cliente);
 	}
 
 
@@ -112,8 +113,8 @@ public class Carrito {
 
 	@Override
 	public String toString() {
-		return "Carrito [idCarrito=" + idCarrito + ", fecha=" + fecha + ", hora=" + hora + ", items=" + items + ", cli="
-				+ cli + "]";
+		return "Carrito [idCarrito=" + idCarrito + ", fecha=" + fecha + ", hora=" + hora + ", items=" + items + ", cliente="
+				+ cli + "]\n";
 	}
 
 

@@ -9,18 +9,18 @@ public class Cliente {
 	
 	public Cliente(String nombreCliente, int dni, String direccion) {
 		super();
-		this.nombreCliente = nombreCliente;
-		this.dni = dni;
-		this.direccion = direccion;
+		this.setNombreCliiente(nombreCliente);
+		this.setDni(dni);
+		this.setDireccion(direccion);
 	}
 
 
 	public Cliente(int id,String nombreCliente, int dni, String direccion) {
 		super();
-		this.idCliente = id;
-		this.nombreCliente = nombreCliente;
-		this.dni = dni;
-		this.direccion = direccion;
+		this.setIdCliente(id);
+		this.setNombreCliiente(nombreCliente);
+		this.setDni(dni);
+		this.setDireccion(direccion);
 	}
 	
 	@Override
@@ -28,7 +28,6 @@ public class Cliente {
 		return "\n Cliente [idCliente=" + idCliente + ", nombreCliente=" + nombreCliente + ", dni=" + dni + ", direccion="
 				+ direccion + "]";
 	}
-	
 	
 	public int getIdCliente() {
 		return idCliente;
